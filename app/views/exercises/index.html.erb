@@ -1,0 +1,20 @@
+<h1>All Exercises</h1>
+
+<div class="row">
+  <div class="alert alert-info col-md-12">
+      Have we missed an exercise that you think should be here? Or perhaps we have completely stuffed up an exercise? If so drop us some feedback.
+      <a class="close" data-dismiss="alert">&#215;</a>
+  </div>
+</div>
+
+<% @exercises.each do |exercise| %>
+<div class="row">
+  <div class="col-md-8">
+    <h3><%= link_to exercise.name, exercise_path(exercise) %></h3>
+    <p><%= exercise.description %></p>
+  </div>
+</div>
+<% end %>
+
+<!-- Add this to paginate your page, given the pagination details -->
+<%= will_paginate %>

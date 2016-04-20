@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <hr/>
+  <div class = "row">
+    <div class="col-md-12">
+      <footer role="contentinfo">
+        <div class="pull-left">
+          <p><span class="copyright">Copyright 2016 &copy; Skolpt</small></p>
+        </div>
+        <div class="pull-right">
+          <%= link_to "About", '' %>
+          <%= link_to "Contact", '' %>
+          <%= link_to "Blog", blogs_path %>
+          <%= link_to "Disclaimer", '' %>
+        </div>
+      </footer>
+    </div>
+  </div>
+  
+  <!-- The following is an administrative console, allowing admins to create 
+  exercises, categories, post blog articles, etc -->
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <div class="col-md-12 footer-push"></div>
+    
+      <div class="admin-nav md-col-12 navbar-fixed-bottom">
+        <ul class="nav navbar-nav">
+          <li> <%= link_to "Categories", categories_path %> </li>
+          <li> <%= link_to "New Exercise", new_exercise_path %> </li>
+          <li> <%= link_to "New Category", new_category_path %> </li>
+          <li> <%= link_to "New Blog Post", new_blog_path %> </li>
+        </ul>
+        <div class="pull-right">
+          <p class="navbar-text"> Signed in as ADMIN: <%= "#{current_user.email}" %> </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  
+</div>

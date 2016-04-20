@@ -1,0 +1,29 @@
+<% if @blog.errors.any? %>
+  <div class="row">
+    <div class="alert alert-danger col-md-6">
+      <h5>Please correct the following errors:</h5>
+      <ul>
+        <% @blog.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @blog do |f| %>
+      
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      
+      <%= f.label :byline %>
+      <%= f.text_area :byline, rows: 5 %>
+      
+      <%= f.label :content %>
+      <%= f.text_area :content, rows: 20 %>
+      
+    <% end %>
+  </div>
+</div>
