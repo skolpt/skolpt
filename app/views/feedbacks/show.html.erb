@@ -1,0 +1,15 @@
+<h3>Feedback from: <%= @feedback.email %></h3>
+<p>
+  <strong>Actioned:</strong> <%= (@feedback.actioned == false ? "No" : "Yes") %>
+</p>
+<p><strong>Summary:</strong></p>
+<p>
+  <%= simple_format(@feedback.summary) %>
+</p>
+
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "Edit Feedback", edit_feedback_path(@feedback), class: "btn btn-primary btn-space" %>
+  <%= link_to "Delete Feedback", feedback_path(@feedback), method: :delete, 
+            data: { confirm: "Are you sure you want to delete the feedback?" },
+            class: "btn btn-danger btn-primary btn-space" %>
+<% end %>

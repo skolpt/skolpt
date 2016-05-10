@@ -1,0 +1,10 @@
+<h1>Search Results</h1>
+
+<% @results.each do |result| %>
+  <div class="row">
+    <div class="col-md-8">
+      <h3><%= link_to result.name, exercise_path(result) %></h3>
+      <p><%= result.description %></p>
+    </div>
+  </div>
+<% end %>

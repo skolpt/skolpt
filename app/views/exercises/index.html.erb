@@ -17,4 +17,4 @@
 <% end %>
 
 <!-- Add this to paginate your page, given the pagination details -->
-<%= will_paginate %>
+<%= will_paginate @exercises, :previous_label => '<i class="glyphicon glyphicon-chevron-left"></i>', :next_label => '<i class="glyphicon glyphicon-chevron-right"></i>' %>

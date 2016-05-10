@@ -1,10 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate_user!
-  before_filter :set_category, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate_user!
+  before_filter :set_category, only: [:show, :update, :destroy]
   
    def index
      if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
       @categories = Category.all
@@ -12,8 +12,8 @@ class CategoriesController < ApplicationController
   end
   
   def new
-    if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+    if current_user.nil? || !current_user.admin?
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
       @category = Category.new
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   
   def show
     if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
       @category = Category.find(params[:id])
@@ -41,15 +41,15 @@ class CategoriesController < ApplicationController
   end
   
   def edit
-    if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+    if current_user.nil? || !current_user.admin?
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     end
   end 
   
   def update
     if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
       if @category.update(category_params)

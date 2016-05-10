@@ -1,0 +1,13 @@
+<h1>All Variations</h1>
+
+<% @variations.each do |variation| %>
+<div class="row">
+  <div class="col-md-8">
+    <h3><%= link_to variation.name, variation_path(variation) %></h3>
+    <p><%= variation.exercise_id.to_s + " - " + variation.description %></p>
+  </div>
+</div>
+<% end %>
+
+<!-- Add this to paginate your page, given the pagination details 
+<= will_paginate %>-->

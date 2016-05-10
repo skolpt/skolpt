@@ -1,5 +1,5 @@
 class ExercisesController < ApplicationController
-  before_action :authenticate_user!, :except => [:index, :show]
+  #before_action :authenticate_user!, :except => [:index, :show]
   before_filter :set_exercise, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   skip_before_filter :verify_authenticity_token, :only => [:upvote, :downvote]
   
@@ -10,12 +10,20 @@ class ExercisesController < ApplicationController
   end
   
   def new
-    @exercise = Exercise.new
+    if current_user.nil? || !current_user.admin?
+      flash[:danger] = "You do not have the permissions to view that page"
+      redirect_to root_path
+    else
+      @exercise = Exercise.new
+    end
   end
   
   def create
     @exercise = current_user.exercises.build(exercise_params)
-    if @exercise.save
+    if Exercise.exists?(name: @exercise.name)
+      flash.now[:danger] = "Exercise has not been created, duplicate entry"
+      render :new
+    elsif @exercise.save
       flash[:success] = "Exercise has been created"
       redirect_to exercises_path
     else
@@ -25,20 +33,20 @@ class ExercisesController < ApplicationController
   end
   
   def edit
-    if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+    if current_user.nil? || !current_user.admin?
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     end
   end 
   
   def update
     if !current_user.admin?
-      flash[:danger] = "You are not an admin"
+      flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
       if @exercise.update(exercise_params)
-          flash[:success] = "Exercise has been updated"
-          redirect_to @exercise
+        flash[:success] = "Exercise has been updated"
+        redirect_to @exercise
       else
         flash.now[:danger] = "Exercise has not been updated"
         render :edit
@@ -49,6 +57,8 @@ class ExercisesController < ApplicationController
   def show
     @category = Category.find(@exercise.categories_id)
     @muscle_group = Muscle_group.find(@exercise.muscle_groups_id)
+    @variations = Variation.where(:exercise_id => @exercise)
+    @variation = @exercise.variations.build
   end 
   
   def destroy
@@ -82,7 +92,7 @@ class ExercisesController < ApplicationController
         format.json { render json: { count: @exercise.get_downvotes.size } }
      end
     else
-      flash[:danger] = "You have already disliked this"
+       flash[:danger] = "You have already disliked this"
       respond_to do |format|
         format.html {redirect_to :back }
         format.json { head :conflict }

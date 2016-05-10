@@ -7,10 +7,10 @@
           <p><span class="copyright">Copyright 2016 &copy; Skolpt</small></p>
         </div>
         <div class="pull-right">
-          <%= link_to "About", '' %>
-          <%= link_to "Contact", '' %>
+          <%= link_to "About", '/about' %>
+          <%= link_to "Contact", '/contact' %>
           <%= link_to "Blog", blogs_path %>
-          <%= link_to "Disclaimer", '' %>
+          <%= link_to "Disclaimer", '/disclaimer' %>
         </div>
       </footer>
     </div>
@@ -24,10 +24,27 @@
     
       <div class="admin-nav md-col-12 navbar-fixed-bottom">
         <ul class="nav navbar-nav">
+          
+          <li class="dropup">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Create <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <%= link_to "New Exercise", new_exercise_path %> </li>
+              <li> <%= link_to "New Category", new_category_path %> </li>
+              <li> <%= link_to "New Blog Post", new_blog_path %> </li>
+            </ul>
+          </li>
+          
+          
           <li> <%= link_to "Categories", categories_path %> </li>
-          <li> <%= link_to "New Exercise", new_exercise_path %> </li>
-          <li> <%= link_to "New Category", new_category_path %> </li>
-          <li> <%= link_to "New Blog Post", new_blog_path %> </li>
+          
+          <!-- Required to be updated -->
+          <li>
+            <%= link_to feedback_dashboard_path do %>
+              Feedback <%= content_tag :span, Feedback.where(:actioned => false).count, class: 'badge' %>
+            <% end %>
+          </li>
+          
+          <!--<li><a href="#">Feedback <span class="badge"><%= Feedback.where(:actioned => false).count %></span></li>-->
         </ul>
         <div class="pull-right">
           <p class="navbar-text"> Signed in as ADMIN: <%= "#{current_user.email}" %> </p>

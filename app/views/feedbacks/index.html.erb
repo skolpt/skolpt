@@ -2,3 +2,40 @@
 
 <!-- Make this an admin only view -->
 <!-- Add table to show all feedback recieved, 20 results should suffice then paginate -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th> Name </th>
+            <th> Email </th>
+            <th> Type of Feedback </th>
+            <th> Summary </th>
+            <th> Actioned </th>
+            <th> View </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @feedbacks.each do |feedback| %>
+            <tr>
+              <td><%= feedback.name %></td>
+              <td><%= feedback.email %></td>
+              <td><%= feedback.type_of_feedback %></td>
+              <td><%= truncate(feedback.summary, length: 40) %></td>
+              <td><%= (feedback.actioned == false ? "No" : "Yes") %></td>
+              <td><%= link_to "View", feedback_path(feedback) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        
+        
+      </table>
+      
+    </div>
+  </div>
+
+
+
+<!-- Add this to paginate your page, given the pagination details -->
+<%= will_paginate %>

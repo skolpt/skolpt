@@ -23,6 +23,32 @@ footer a:hover {
   text-decoration: none;
 }
 
+// Pagination
+.pagination li a {
+  border: none;
+  color: #287B54;
+}
+
+.pagination li a:hover {
+  border: none;
+  color: #48BC7D;
+}
+
+.pagination .active a {
+  background: #48BC7D;
+  border: none;
+}
+
+.pagination .active a:hover {
+  background: #287B54;
+  border: none;
+}
+
+// Search Box
+.search-field {
+  font-weight: normal;
+}
+
 .copyright {
   text-transform: none;
   font-weight: normal;
@@ -34,6 +60,15 @@ footer a:hover {
   font-weight: bold;
   letter-spacing: 0.1em;
   font-size: 0.9em;
+}
+
+.navbar-default {
+  border-color: #48BC7D;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: #48BC7D;
+  color: #000000;
 }
 
 .navbar-default .navbar-brand {
@@ -49,14 +84,46 @@ footer a:hover {
   color: #FFFFFF;
 }
 
+.navbar-default .navbar-nav > li > a:hover {
+  color: #287B54;
+}
+
 .navbar-right {
   margin-right: 1px;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border: #48BC7D;
+}
+
+.navbar-form {
+  box-shadow: none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #FFFFFF;
+}
+
+.navbar-collapse {
+  box-shadow: none;
+}
+
+.navbar-default .navbar-toggle {
+  border: 0;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #48BC7D;
 }
 
 .dropdown-menu li {
   font-size: 0.9em;
   letter-spacing: 0;
   text-transform: none;
+}
+
+.dropdown-menu li i {
+  font-size: 1.2em;
 }
 
 .exercise-description {
@@ -133,6 +200,7 @@ h3 a:hover {
 
 .exercise-detail-summary {
   margin: 0;
+  margin-bottom: 1em;
 }
 
 .exercise-detail-summary h3 {
@@ -143,12 +211,29 @@ h3 a:hover {
   font-size: 1.1em;
 }
 
+.exercise-variation-description {
+  margin: 0;
+}
+
+.exercise-variation-description h3 {
+  margin: 0;
+  margin-bottom: 0.4em;
+}
+
+.exercise-variation-description p {
+  font-size: 1.1em;
+}
+
 .admin-nav {
   background: #e7e7e7;
 }
 
 .btn-space {
   margin-top: 20px;
+}
+.btn-primary-variation {
+  background: #48BC7D;
+  color: #ffffff;
 }
 
 .alert-error {

@@ -30,10 +30,30 @@
     <p> <%= simple_format(@exercise.summary) %> </p>
   </div>
   
+  <% if @variations.exists? %>
+    <div class="exercise-variation-description well md-col-12">
+      <h3> Variations </h3>
+      <% @variations.each do |variation| %>
+        <p> 
+          <% if user_signed_in? && current_user.admin? %> 
+            <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
+            class: "btn btn-primary btn-sml" %> <%= link_to "Delete", 
+            exercise_variation_path(@exercise,variation), method: :delete, 
+            data: { confirm: "Are you sure you want to delete the variation?" },
+            class: "btn btn-danger btn-primary btn-sml" %> 
+          <% end %>
+          <%= variation.name + " - " + variation.description %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
   <% if user_signed_in? && current_user.admin? %>
     <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "btn btn-primary btn-lg btn-space" %>
     <%= link_to "Delete Exercise", exercise_path(@exercise), method: :delete, 
               data: { confirm: "Are you sure you want to delete the exercise?" },
               class: "btn btn-danger btn-primary btn-lg btn-space" %>
+     <%= link_to "Add Variation", new_exercise_variation_path(@exercise), class: "btn btn-primary-variation btn-lg btn-space" %>
   <% end %>
 </exercise>
+

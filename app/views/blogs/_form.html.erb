@@ -1,15 +1,4 @@
-<% if @blog.errors.any? %>
-  <div class="row">
-    <div class="alert alert-danger col-md-6">
-      <h5>Please correct the following errors:</h5>
-      <ul>
-        <% @blog.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-<% end %>
+<%= render 'shared/errors', obj: @blog %>
 
 <div class="row">
   <div class="col-md-6">
@@ -23,6 +12,8 @@
       
       <%= f.label :content %>
       <%= f.text_area :content, rows: 20 %>
+      
+      <%= f.submit'Submit', class: "btn btn-success pull-right" %>
       
     <% end %>
   </div>

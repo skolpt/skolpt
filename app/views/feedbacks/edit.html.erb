@@ -1,0 +1,41 @@
+<h1>Edit Feedback</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @feedback do |f| %>
+      
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      
+      <strong>Type of feedback</strong>
+      <br />
+      <%= f.radio_button :type_of_feedback, 'general_feedback' %> 
+      <%= f.label :type_of_feedback, 'General Feedback', :value => 'general_feedback' %>
+      <br />
+      <%= f.radio_button :type_of_feedback, 'suggestion' %> 
+      <%= f.label :type_of_feedback, 'Suggestion/Improvement', :value => 'suggestion' %>
+      <br />
+      <%= f.radio_button :type_of_feedback, 'fixproblem' %> 
+      <%= f.label :type_of_feedback, 'Found a Bug/Fix a Problem', :value => 'fixproblem' %>
+      
+      <br />
+      
+      <%= f.label :summary %>
+      <%= f.text_area :summary, rows: 8 %>
+      
+      <strong>Actioned</strong>
+      <br />
+      <%= f.radio_button :actioned, true %> 
+      <%= f.label :actioned, 'Yes', :value => true %>
+      <br />
+      <%= f.radio_button :actioned, false %> 
+      <%= f.label :actioned, 'No', :value => false %>
+      
+      <%= f.submit'Submit Feedback', class: "btn btn-success pull-right" %>
+      
+    <% end %>
+  </div>
+</div>

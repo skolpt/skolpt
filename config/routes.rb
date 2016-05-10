@@ -10,19 +10,39 @@ Rails.application.routes.draw do
       put "like", to: "exercises#upvote"
       put "dislike", to: "exercises#downvote"
     end
+    resources :variations do
+      get ':id/edit' => "variations#edit"
+      get 'new' => "variations#new"
+    end  
   end
   
   resources :categories do
   end
-  
+
   resources :blogs do
   end
   
-  resources :feedbacks do
-  end
+  resources :feedbacks, only: [:create, :show, :edit, :update, :destroy]
   
-  get 'feedback' => "feedbacks#new"
+  get 'your_feedback' => "feedbacks#new"
   get 'feedback/dashboard' => "feedbacks#index"
+  
+  # Removing search at this time
+  # resources :search
+  
+  resources :contacts, only: [:create]
+  get 'contact' => "contacts#new"
+  
+  
+   # error pages
+  #%w( 404 422 500 503 ).each do |code|
+  #  get code, :to => "errors#show", :code => code
+  #end
+  
+  # Static Pages
+  # generic multiview
+  # get "/pages/:page" => "pages#show"
+  get ":page" => "pages#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

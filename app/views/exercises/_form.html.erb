@@ -1,25 +1,8 @@
+<%= render 'shared/errors', obj: @exercise %>
+
 <div class='row'>
   <div class='col-md-12'>
     <%= form_for(@exercise, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-    <% if @exercise.errors.any? %>
-      <div class="panel panel-danger col-md-offset-1">
-        <div class="panel-heading">
-          <h2 class="panel-title">
-            <%= pluralize(@exercise.errors.count, "error") %>
-            prohibited this exercise from being saved:
-          </h2>
-          <div class="panel-body">
-            <ul>
-              <% @exercise.errors.full_messages.each do |msg| %>
-                <li>
-                  <%= msg %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    <% end %>
       <div class='form-group'>
         <div class='control-label col-md-1'>
           <%= f.label :name %>
@@ -62,7 +45,7 @@
       </div>
       <div class='form-group'>
         <div class='col-md-offset-1 col-md-11'>
-          <%= f.submit class: 'btn btn-primary btn-lg pull-right' %>
+          <%= f.submit class: 'btn btn-success pull-right' %>
         </div>
       </div>
     <% end %>

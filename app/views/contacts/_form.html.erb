@@ -1,0 +1,20 @@
+<%= render 'shared/errors', obj: @contact %>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= form_for(@contact, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Name', autofocus: true %>
+  
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control', placeholder: 'Email', autofocus: true %>
+
+      <%= f.label :message %>
+      <%= f.text_area :message, rows: 10, class: 'form-control', placeholder: 'Message' %>
+
+      <br />
+      <%= f.submit "Send Message", class: 'btn btn-success pull-right' %>
+    <% end %>
+  </div>
+</div>
