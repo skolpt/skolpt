@@ -10,7 +10,7 @@ class ExercisesController < ApplicationController
   end
   
   def new
-    if current_user.nil? || !current_user.admin?
+    if current_athlete.nil? || !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -19,7 +19,7 @@ class ExercisesController < ApplicationController
   end
   
   def create
-    @exercise = current_user.exercises.build(exercise_params)
+    @exercise = current_athlete.exercises.build(exercise_params)
     if Exercise.exists?(name: @exercise.name)
       flash.now[:danger] = "Exercise has not been created, duplicate entry"
       render :new
@@ -33,14 +33,14 @@ class ExercisesController < ApplicationController
   end
   
   def edit
-    if current_user.nil? || !current_user.admin?
+    if current_athlete.nil? || !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     end
   end 
   
   def update
-    if !current_user.admin?
+    if !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else

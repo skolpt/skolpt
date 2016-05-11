@@ -4,7 +4,7 @@ class VariationsController < ApplicationController
   before_filter :set_variation, only: [:show, :edit, :update, :destroy]
   
   def new
-    if current_user.nil? || !current_user.admin?
+    if current_athlete.nil? || !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -13,7 +13,7 @@ class VariationsController < ApplicationController
   end
   
   def show
-    if current_user.nil? || !current_user.admin?
+    if current_athlete.nil? || !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -22,7 +22,7 @@ class VariationsController < ApplicationController
   end
   
   def create
-    if !current_user.admin?
+    if !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -38,14 +38,14 @@ class VariationsController < ApplicationController
   end
   
   def edit
-    if current_user.nil? || !current_user.admin?
+    if current_athlete.nil? || !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     end
   end 
   
   def update
-    if !current_user.admin?
+    if !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else

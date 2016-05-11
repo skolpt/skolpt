@@ -1,8 +1,8 @@
 class FeedbacksController < ApplicationController
 
   def index
-    if current_user != nil
-      if current_user.admin?
+    if current_athlete != nil
+      if current_athlete.admin?
         @feedbacks = Feedback.paginate(page: params[:page], per_page: 20)
       end
     else
@@ -12,8 +12,8 @@ class FeedbacksController < ApplicationController
   end
   
   def show
-    if current_user != nil
-      if !current_user.admin?
+    if current_athlete != nil
+      if !current_athlete.admin?
         flash[:danger] = "You do not have the permissions to view that page"
         redirect_to root_path
       else
@@ -42,8 +42,8 @@ class FeedbacksController < ApplicationController
   end
   
   def edit
-    if current_user != nil
-      if !current_user.admin?
+    if current_athlete != nil
+      if !current_athlete.admin?
         flash[:danger] = "You do not have the permissions to view that page"
         redirect_to root_path
       else
@@ -56,7 +56,7 @@ class FeedbacksController < ApplicationController
   end 
   
   def update
-    if !current_user.admin?
+    if !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -71,7 +71,7 @@ class FeedbacksController < ApplicationController
   end
   
   def destroy
-    if !current_user.admin?
+    if !current_athlete.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
