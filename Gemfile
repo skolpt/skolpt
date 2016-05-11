@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
-
+ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # For styling
 gem 'bootstrap-sass', '~>3.3.4.1'
 gem 'autoprefixer-rails', '~>5.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use devise for authentication via HTTP and JSON API
 gem 'devise', '~>3.5.1'
 # Use omniauth to work with Facebook and Google login
@@ -61,7 +60,11 @@ gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in developm
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
   gem 'rspec-rails', '3.2.3'
   gem 'guard-rspec', require: false
   gem 'spring-commands-rspec'
@@ -78,6 +81,11 @@ group :development do
   
 group :test do
   gem 'capybara', '2.4.4'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 end
