@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   #before_action :authenticate_user!
-  before_filter :set_category, only: [:show, :update, :destroy]
+  before_filter :set_category, only: [:show, :update, :edit, :destroy]
   
    def index
      if !current_athlete.admin?
