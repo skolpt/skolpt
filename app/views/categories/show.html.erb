@@ -7,7 +7,7 @@
     <%= @category.description %>
   </div>
   
-  <% if user_signed_in? && current_user.admin? %>
+  <% if athlete_signed_in? && athlete_user.admin? %>
     <%= link_to "Edit Category", edit_category_path(@category), class: "btn btn-primary btn-lg btn-space" %>
     <%= link_to "Delete Category", category_path(@category), method: :delete, 
               data: { confirm: "Are you sure you want to delete the category?" },

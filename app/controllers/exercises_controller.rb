@@ -68,7 +68,7 @@ class ExercisesController < ApplicationController
     end
   end
   def upvote
-    @exercise.upvote_by current_user
+    @exercise.upvote_by current_athlete
     if @exercise.vote_registered?
       flash[:success] = "Successfully liked"
       respond_to do |format|
@@ -84,7 +84,7 @@ class ExercisesController < ApplicationController
     end
   end
   def downvote
-    @exercise.downvote_by current_user
+    @exercise.downvote_by current_athlete
     if @exercise.vote_registered?
       flash[:success] = "Successfully disliked"
       respond_to do |format|

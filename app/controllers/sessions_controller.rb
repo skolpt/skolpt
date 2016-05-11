@@ -4,10 +4,10 @@ class SessionsController < Devise::SessionsController
    self.resource = warden.authenticate!(auth_options)
    sign_in(resource_name, resource)
  
-   current_user.update authentication_token: nil
+   current_athlete.update authentication_token: nil
  
    respond_to do |format|
-     format.json { render :json => {  :user => current_user, :status => :ok, :authentication_token => current_user.authentication_token } }
+     format.json { render :json => {  :athlete => current_athlete, :status => :ok, :authentication_token => current_athlete.authentication_token } }
      format.html { super }
    end
   end
@@ -17,8 +17,8 @@ class SessionsController < Devise::SessionsController
  
    respond_to do |format|
      format.json {
-       if current_user
-         current_user.update authentication_token: nil
+       if current_athlete
+         current_athlete.update authentication_token: nil
          signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
          render :json => {}.to_json, :status => :ok
        else

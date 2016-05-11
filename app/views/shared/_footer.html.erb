@@ -18,8 +18,8 @@
   
   <!-- The following is an administrative console, allowing admins to create 
   exercises, categories, post blog articles, etc -->
-  <% if user_signed_in? %>
-    <% if current_user.admin? %>
+  <% if athlete_signed_in? %>
+    <% if current_athlete.admin? %>
       <div class="col-md-12 footer-push"></div>
     
       <div class="admin-nav md-col-12 navbar-fixed-bottom">
@@ -47,7 +47,7 @@
           <!--<li><a href="#">Feedback <span class="badge"><%= Feedback.where(:actioned => false).count %></span></li>-->
         </ul>
         <div class="pull-right">
-          <p class="navbar-text"> Signed in as ADMIN: <%= "#{current_user.email}" %> </p>
+          <p class="navbar-text"> Signed in as ADMIN: <%= "#{current_athlete.email}" %> </p>
         </div>
       </div>
     <% end %>

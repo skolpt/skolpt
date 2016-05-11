@@ -35,7 +35,7 @@
       <h3> Variations </h3>
       <% @variations.each do |variation| %>
         <p> 
-          <% if user_signed_in? && current_user.admin? %> 
+          <% if athlete_signed_in? && current_athlete.admin? %> 
             <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
             class: "btn btn-primary btn-sml" %> <%= link_to "Delete", 
             exercise_variation_path(@exercise,variation), method: :delete, 
@@ -48,7 +48,7 @@
     </div>
   <% end %>
 
-  <% if user_signed_in? && current_user.admin? %>
+  <% if athlete_signed_in? && current_athlete.admin? %>
     <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "btn btn-primary btn-lg btn-space" %>
     <%= link_to "Delete Exercise", exercise_path(@exercise), method: :delete, 
               data: { confirm: "Are you sure you want to delete the exercise?" },
