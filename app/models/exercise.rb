@@ -1,7 +1,7 @@
 class Exercise < ActiveRecord::Base
-  searchable do
-    text :name, :description
-  end
+  #searchable do
+  #  text :name, :description
+  #end
   
   validates :name, presence: true, :uniqueness => true
   validates :description, presence: true
