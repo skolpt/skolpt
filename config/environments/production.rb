@@ -77,10 +77,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  parsed_url = URI.parse(url)
-  http = Net::HTTP.new(parsed_url.host, parsed_url.port)
-  http.use_ssl = true
-  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
