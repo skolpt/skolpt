@@ -81,9 +81,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
-  domain:               'skolpt.com',
-  user_name:            'skolpt.aplabs@gmail.com',
-  password:             '4UrPr0tection',
+  domain:               'https://skolpt.herokuapp.com',
+  user_name:            'info@meetwhatson.com',
+  password:             '1nf04Wh@ts0n',
   authentication:       'plain',
   enable_starttls_auto: true  }
 end
