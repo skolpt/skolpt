@@ -1,9 +1,9 @@
 <exercise class="detail-exercise row">
-  <div class="md-col-12">
+  <div class="col-xs-12">
     <h1 class="exercise-detail-name"> <%= @exercise.name %> </h1>
   </div>
   
-  <div class="md-col-12">
+  <div class="col-xs-12">
     <div class="votes md-col-4 pull-right" id="likes-dislikes">
       <%= link_to like_exercise_path(@exercise), method: :put, class: 'voting' do %>
         <i class="glyphicon glyphicon-chevron-up"></i>
@@ -15,23 +15,23 @@
       <% end %>
     </div>
     
-    <div class="md-col-8">
+    <div class="col-xs-8">
       <h2 class="exercise-detail-category"> <%= @category.name + " - " + @muscle_group.name %> </h2>
     </div>
   </div>
   
-  <div class="exercise-detail-description well md-col-12">
+  <div class="exercise-detail-description well col-xs-12">
     <h3> Description </h3>
     <p> <%= simple_format(@exercise.description) %> </p>
   </div>
   
-  <div class="exercise-detail-summary well md-col-12">
+  <div class="exercise-detail-summary well col-xs-12">
     <h3> Summary </h3>
     <p> <%= simple_format(@exercise.summary) %> </p>
   </div>
   
   <% if @variations.exists? %>
-    <div class="exercise-variation-description well md-col-12">
+    <div class="exercise-variation-description well col-xs-12">
       <h3> Variations </h3>
       <% @variations.each do |variation| %>
         <p> 
