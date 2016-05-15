@@ -45,7 +45,8 @@
         <% @variations.each do |variation| %>
         <div class="col-md-4">
           <div class="exercise-variation-description col-md-12">
-            <p> <%= variation.name + " - " + variation.description %> </p>
+            <p><strong> <%= variation.name %> </strong></p>
+            <p> <%= variation.description %></p>
             
             <% if athlete_signed_in? && current_athlete.admin? %> 
               <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
