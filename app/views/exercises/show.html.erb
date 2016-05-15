@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h1><%= @exercise.name %></h1>
+    <h2><%= @exercise.name %></h2>
   </div>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="col-md-8">
   
   <div class="row">
-    <h4> Description </h4>
+    <h4 class="green-heading"> Description </h4>
     
     <div class="exercise-detail-description">
       <p> <%= simple_format(@exercise.description) %> </p>
@@ -30,7 +30,7 @@
   </div>
   
   <div class="row">
-    <h4> Summary </h4>
+    <h4 class="green-heading"> Summary </h4>
     
     <div class="exercise-detail-summary">
       <p> <%= simple_format(@exercise.summary) %> </p>
@@ -40,7 +40,7 @@
   
   <% if @variations.exists? %>
     <div class="row">
-      <h4> Variations </h4>
+      <h4 class="green-heading"> Variations </h4>
         
         <% @variations.each do |variation| %>
         <div class="col-md-4">
