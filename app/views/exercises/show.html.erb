@@ -1,10 +1,11 @@
-<exercise class="detail-exercise row">
-  <div class="col-xs-12">
-    <h1 class="exercise-detail-name"> <%= @exercise.name %> </h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @exercise.name %></h1>
   </div>
-  
-  <div class="col-xs-12">
-    <div class="votes md-col-4 pull-right" id="likes-dislikes">
+</div>
+
+<div class="row">
+    <div class="votes col-xs-4 pull-right text-right" id="likes-dislikes">
       <%= link_to like_exercise_path(@exercise), method: :put, class: 'voting' do %>
         <i class="glyphicon glyphicon-chevron-up"></i>
           <%= @exercise.get_upvotes.size %>
@@ -15,45 +16,58 @@
       <% end %>
     </div>
     
-    <div class="col-xs-8">
-      <h2 class="exercise-detail-category"> <%= @category.name + " - " + @muscle_group.name %> </h2>
+    <h3 class="exercise-detail-category col-xs-8"> <%= @category.name + " - " + @muscle_group.name %> </h3>
+</div>
+
+<div class="col-md-8">
+  
+  <div class="row">
+    <h4> Description </h4>
+    
+    <div class="exercise-detail-description">
+      <p> <%= simple_format(@exercise.description) %> </p>
     </div>
   </div>
   
-  <div class="exercise-detail-description well col-xs-12">
-    <h3> Description </h3>
-    <p> <%= simple_format(@exercise.description) %> </p>
+  <div class="row">
+    <h4> Summary </h4>
+    
+    <div class="exercise-detail-summary">
+      <p> <%= simple_format(@exercise.summary) %> </p>
+    </div>
   </div>
   
-  <div class="exercise-detail-summary well col-xs-12">
-    <h3> Summary </h3>
-    <p> <%= simple_format(@exercise.summary) %> </p>
-  </div>
   
   <% if @variations.exists? %>
-    <div class="exercise-variation-description well col-xs-12">
-      <h3> Variations </h3>
-      <% @variations.each do |variation| %>
-        <p> 
-          <% if athlete_signed_in? && current_athlete.admin? %> 
-            <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
-            class: "btn btn-primary btn-sml" %> <%= link_to "Delete", 
-            exercise_variation_path(@exercise,variation), method: :delete, 
-            data: { confirm: "Are you sure you want to delete the variation?" },
-            class: "btn btn-danger btn-primary btn-sml" %> 
-          <% end %>
-          <%= variation.name + " - " + variation.description %>
-        </p>
+    <div class="row">
+      <h4> Variations </h4>
+        
+        <% @variations.each do |variation| %>
+        <div class="col-md-4">
+          <div class="exercise-variation-description col-md-12">
+            <p> <%= variation.name + " - " + variation.description %> </p>
+            
+            <% if athlete_signed_in? && current_athlete.admin? %> 
+              <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
+              class: "btn btn-primary btn-sml" %> <%= link_to "Delete", 
+              exercise_variation_path(@exercise,variation), method: :delete, 
+              data: { confirm: "Are you sure you want to delete the variation?" },
+              class: "btn btn-danger btn-primary btn-sml" %> 
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   <% end %>
-
-  <% if athlete_signed_in? && current_athlete.admin? %>
-    <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "btn btn-primary btn-lg btn-space" %>
-    <%= link_to "Delete Exercise", exercise_path(@exercise), method: :delete, 
-              data: { confirm: "Are you sure you want to delete the exercise?" },
-              class: "btn btn-danger btn-primary btn-lg btn-space" %>
-     <%= link_to "Add Variation", new_exercise_variation_path(@exercise), class: "btn btn-primary-variation btn-lg btn-space" %>
-  <% end %>
-</exercise>
-
+  
+  <div class="row">
+    <% if athlete_signed_in? && current_athlete.admin? %>
+      <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "btn btn-primary btn-space" %>
+      <%= link_to "Delete Exercise", exercise_path(@exercise), method: :delete, 
+                data: { confirm: "Are you sure you want to delete the exercise?" },
+                class: "btn btn-danger btn-primary btn-space" %>
+       <%= link_to "Add Variation", new_exercise_variation_path(@exercise), class: "btn btn-primary-variation btn-space" %>
+    <% end %>
+  </div>
+  
+</div>
