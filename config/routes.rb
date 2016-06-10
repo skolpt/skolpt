@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  # Sets the Devise Route for Signup, this must be situated here before Devise.
+  devise_scope :athlete do
+    get "/signup" => "devise/registrations#new", as: "new_athlete_registration" # custom path to sign_up/registration
+  end
+  
   devise_for :athletes, :controllers => {registrations: "registrations", sessions: "sessions", :omniauth_callbacks => "callbacks"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root to: 'exercises#index'
+
+  
   resources :exercises do
     member do
       put "like", to: "exercises#upvote"
@@ -17,6 +24,9 @@ Rails.application.routes.draw do
   end
   
   resources :categories do
+  end
+  
+  resources :muscle_groups do
   end
 
   resources :blogs do

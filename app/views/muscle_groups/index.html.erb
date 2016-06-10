@@ -1,0 +1,12 @@
+<h1>All Muscle Groups</h1>
+
+<% @muscle_groups.each do |muscle_group| %>
+  <div class="well well-lg">
+    <div class="muscle_group-name">
+      <%= link_to muscle_group.name, muscle_group_path(muscle_group) %>
+    </div> 
+    <div class="muscle_group-description">
+      <%= truncate(muscle_group.description, length: 500) %>
+    </div>
+  </div>
+<% end %>
