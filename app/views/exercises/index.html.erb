@@ -4,14 +4,20 @@
   </div>
 </div>
 
-<% @exercises.each do |exercise| %>
 <div class="row">
   <div class="col-md-8">
-    <h3><%= link_to exercise.name, exercise_path(exercise) %></h3>
-    <p><%= exercise.description %></p>
+    <% @exercises.each do |exercise| %>
+      <h3><%= link_to exercise.name, exercise_path(exercise) %></h3>
+      <p><%= exercise.description %></p>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="subheading">
+      <h4>Filter</h4>
+    </div>
   </div>
 </div>
-<% end %>
 
 <div class="row">
   <!-- Add this to paginate your page, given the pagination details -->
