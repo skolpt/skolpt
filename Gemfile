@@ -94,7 +94,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   # Production Image Handling
-  gem 'fog-aws'
+  gem 'fog', '1.37.0'
 end
 
 end
