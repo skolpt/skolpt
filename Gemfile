@@ -47,6 +47,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 # Image Upload
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick','3.8.0'
+# Production Image Handling
+gem 'fog', '1.37.0'
 
 # Friendly URLS
 gem 'friendly_id', '~> 5.1.0'
@@ -93,8 +95,6 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  # Production Image Handling
-  gem 'fog', '1.37.0'
 end
 
 end
