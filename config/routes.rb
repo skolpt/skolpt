@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :variations do
       get ':id/edit' => "variations#edit"
       get 'new' => "variations#new"
-    end  
+    end
   end
   
   resources :categories do
@@ -36,9 +36,6 @@ Rails.application.routes.draw do
   
   get 'your_feedback' => "feedbacks#new"
   get 'feedback/dashboard' => "feedbacks#index"
-  
-  # Removing search at this time
-  # resources :search
   
   resources :contacts, only: [:create]
   get 'contact' => "contacts#new"

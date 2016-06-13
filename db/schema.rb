@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512093242) do
+ActiveRecord::Schema.define(version: 20160613175243) do
 
   create_table "athletes", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160512093242) do
     t.string   "uid"
     t.boolean  "admin",                  default: false
     t.string   "authentication_token"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "athletes", ["authentication_token"], name: "index_athletes_on_authentication_token"
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160512093242) do
     t.integer  "categories_id"
     t.integer  "muscle_groups_id"
     t.integer  "athlete_id"
+    t.string   "picture"
+    t.text     "setup"
   end
 
   add_index "exercises", ["athlete_id"], name: "index_exercises_on_athlete_id"

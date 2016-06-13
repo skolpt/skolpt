@@ -1,3 +1,6 @@
+<% title "Skolpt" %>
+
+<div class="container">
 <div class="row">
   <div class="col-md-12">
     <h1>All Exercises</h1>
@@ -7,19 +10,28 @@
 <div class="row">
   <div class="col-md-8">
     <% @exercises.each do |exercise| %>
-      <h3><%= link_to exercise.name, exercise_path(exercise) %></h3>
+      <h3><%= link_to exercise.name.titleize, exercise_path(exercise) %></h3>
       <p><%= exercise.description %></p>
     <% end %>
   </div>
+</div>
   
+  <!--
   <div class="col-md-4">
     <div class="subheading">
-      <h4>Filter</h4>
+      <h4>Muscle Groups</h4>
     </div>
+    <ul class="filter-fields">
+      <h4><li><%= link_to "Chest", exercises_path(:muscle_groups_id=>"1") %></li></h4>
+      <h4><li></li></h4>
+      <h4><li></li></h4>
+    </ul>
   </div>
 </div>
+-->
 
 <div class="row">
   <!-- Add this to paginate your page, given the pagination details -->
   <%= will_paginate @exercises, :previous_label => '<i class="glyphicon glyphicon-chevron-left"></i>', :next_label => '<i class="glyphicon glyphicon-chevron-right"></i>' %>
+</div>
 </div>

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def title(text)
+    content_for(:title) { text }
+  end
+  
   def devise_error_messages!
     return '' if resource.errors.empty?
     

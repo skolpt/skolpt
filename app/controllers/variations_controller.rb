@@ -76,6 +76,6 @@ class VariationsController < ApplicationController
     end
     
     def set_exercise
-      @exercise = Exercise.find(params[:exercise_id])
+      @exercise=Exercise.friendly.find(params[:exercise_id])
     end
 end

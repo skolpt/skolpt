@@ -2,7 +2,7 @@
 
 <div class='row'>
   <div class='col-md-12'>
-    <%= form_for(@exercise, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for(@exercise, html: { multipart: true, class: "form-horizontal", role: "form" }) do |f| %>
       <div class='form-group'>
         <div class='control-label col-md-1'>
           <%= f.label :name %>
@@ -16,12 +16,20 @@
           <%= f.label :description %>
         </div>
         <div class='col-md-11'>
-          <%= f.text_area :description, rows: 10, class: 'form-control', placeholder: 'Description of exercise' %>
+          <%= f.text_area :description, rows: 5, class: 'form-control', placeholder: 'Description of exercise' %>
         </div>
       </div>
       <div class='form-group'>
         <div class='control-label col-md-1'>
-          <%= f.label :summary %>
+          <%= f.label "Set up" %>
+        </div>
+        <div class='col-md-11'>
+          <%= f.text_area :setup, rows: 5, class: 'form-control', placeholder: 'Set up of exercise' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='control-label col-md-1'>
+          <%= f.label :movement %>
         </div>
         <div class='col-md-11'>
           <%= f.text_area :summary, rows: 10, class: 'form-control', placeholder: 'Summary of exercise' %>
@@ -43,6 +51,12 @@
           <%= f.collection_select :muscle_groups_id, Muscle_group.all, :id, :name, {prompt: "Select a muscle group"}, {class: "form-control"} %>
         </div>
       </div>
+      
+      <!-- Image Field -->
+      <span class="picture">
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      </span>
+      
       <div class='form-group'>
         <div class='col-md-offset-1 col-md-11'>
           <%= f.submit class: 'btn btn-success pull-right' %>
@@ -51,3 +65,12 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#exercise_picture').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file');
+    }
+  });
+</script>

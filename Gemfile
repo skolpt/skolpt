@@ -44,6 +44,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 
+# Image Upload
+gem 'carrierwave', '0.10.0'
+gem 'mini_magick','3.8.0'
+
+# Friendly URLS
+gem 'friendly_id', '~> 5.1.0'
+
 # Solr Sunspot is the search functionality for the application.
 #gem 'sunspot_rails'
 #gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
@@ -86,6 +93,8 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  # Production Image Handling
+  gem 'fog-aws'
 end
 
 end

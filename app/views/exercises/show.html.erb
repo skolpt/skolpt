@@ -1,74 +1,97 @@
-<div class="row">
-  <div class="col-md-12">
-    <h2><%= @exercise.name %></h2>
-  </div>
-</div>
+<% title "Skolpt | " + @exercise.name.titleize %>
 
-<div class="row">
-    <div class="votes col-xs-4 pull-right text-right" id="likes-dislikes">
-      <%= link_to like_exercise_path(@exercise), method: :put, class: 'voting' do %>
-        <i class="glyphicon glyphicon-chevron-up"></i>
-          <%= @exercise.get_upvotes.size %>
-      <% end %>
-      <%= link_to dislike_exercise_path(@exercise), method: :put, class: 'voting' do %>
-        <i class="glyphicon glyphicon-chevron-down"></i>
-          <%= @exercise.get_downvotes.size %>
-      <% end %>
-    </div>
+<% if @exercise.picture? %><div class="banner"><% else %> <div class="banner-noimage"> <% end %>
+  <div class="container">
+    <h2 class="exercise-heading"> <%= @exercise.name.titleize %> </h2>
+    <h3 class="exercise-detail-category"> <%= @category.name + " - " + @muscle_group.name %> </h3>
     
-    <h3 class="exercise-detail-category col-xs-8"> <%= @category.name + " - " + @muscle_group.name %> </h3>
-</div>
-
-<div class="col-md-8">
-  
-  <div class="row">
-    <h4 class="green-heading"> Description </h4>
-    
-    <div class="exercise-detail-description">
-      <p> <%= simple_format(@exercise.description) %> </p>
-    </div>
-  </div>
-  
-  <div class="row">
-    <h4 class="green-heading"> Summary </h4>
-    
-    <div class="exercise-detail-summary">
-      <p> <%= simple_format(@exercise.summary) %> </p>
-    </div>
-  </div>
-  
-  
-  <% if @variations.exists? %>
+    <!--
     <div class="row">
-      <h4 class="green-heading"> Variations </h4>
-        
-        <% @variations.each do |variation| %>
-        <div class="col-md-4">
-          <div class="exercise-variation-description col-md-12">
-            <p><strong> <%= variation.name %> </strong></p>
-            <p> <%= variation.description %></p>
-            
-            <% if athlete_signed_in? && current_athlete.admin? %> 
-              <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
-              class: "btn btn-primary btn-sml" %> <%= link_to "Delete", 
-              exercise_variation_path(@exercise,variation), method: :delete, 
-              data: { confirm: "Are you sure you want to delete the variation?" },
-              class: "btn btn-danger btn-primary btn-sml" %> 
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <div class="votes col-xs-4 pull-right text-right" id="likes-dislikes">
+        <%= link_to like_exercise_path(@exercise), method: :put, class: 'voting' do %>
+          <i class="glyphicon glyphicon-chevron-up"></i>
+            <%= @exercise.get_upvotes.size %>
+        <% end %>
+        <%= link_to dislike_exercise_path(@exercise), method: :put, class: 'voting' do %>
+          <i class="glyphicon glyphicon-chevron-down"></i>
+            <%= @exercise.get_downvotes.size %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  
-  <div class="row">
-    <% if athlete_signed_in? && current_athlete.admin? %>
-      <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "btn btn-primary btn-space" %>
-      <%= link_to "Delete Exercise", exercise_path(@exercise), method: :delete, 
-                data: { confirm: "Are you sure you want to delete the exercise?" },
-                class: "btn btn-danger btn-primary btn-space" %>
-       <%= link_to "Add Variation", new_exercise_variation_path(@exercise), class: "btn btn-primary-variation btn-space" %>
-    <% end %>
+    -->
   </div>
-  
+</div>
+
+<% if @exercise.picture? %>
+<div class="main-image-container">
+  <div class="container">
+    <div class="exercise-image">
+      <%= image_tag(@exercise.picture.url) if @exercise.picture? %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="content-container">
+  <div class="container">
+    <div class="col-lg-8">
+      <div class="row">
+        <% if athlete_signed_in? && current_athlete.admin? %>
+          <%= link_to "Edit Exercise", edit_exercise_path(@exercise), class: "btn btn-primary btn-space" %>
+          <%= link_to "Delete Exercise", exercise_path(@exercise), method: :delete, 
+                    data: { confirm: "Are you sure you want to delete the exercise?" },
+                    class: "btn btn-danger btn-primary btn-space" %>
+           <%= link_to "Add Variation", new_exercise_variation_path(@exercise), class: "btn btn-primary-variation btn-space" %>
+        <% end %>
+      </div>
+      
+      
+      <div class="row">
+        <div class="exercise-detail-description">
+          <p> <%= simple_format(@exercise.description) %> </p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <h4 class="green-heading"> Set Up </h4>
+        <p>
+           <div class="exercise-detail-summary">
+            <p> <%= simple_format(@exercise.setup) %> </p>
+          </div>
+        </p>
+      </div>
+      
+      <div class="row">
+        <h4 class="green-heading"> Movement </h4>
+        <p>
+          <div class="exercise-detail-summary">
+            <p> <%= simple_format(@exercise.summary) %> </p>
+          </div>
+        </p>
+      </div>
+      
+      <div class="row">
+        <h4 class="green-heading"> Variations </h4>
+
+        <% if @variations.exists? %>
+          <% @variations.each do |variation| %>
+            <div class="exercise-variation-description">
+              <h4> <%= variation.name %> </h4>
+              <p> <%= variation.description %></p>
+              
+              <% if athlete_signed_in? && current_athlete.admin? %> 
+                <%= link_to "Edit", edit_exercise_variation_path(@exercise,variation), 
+                class: "btn btn-primary btn-sml" %> <%= link_to "Delete", 
+                exercise_variation_path(@exercise,variation), method: :delete, 
+                data: { confirm: "Are you sure you want to delete the variation?" },
+                class: "btn btn-danger btn-primary btn-sml" %> 
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        
+      </div>
+      
+    </div>
+  </div>
 </div>
