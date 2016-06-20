@@ -20,13 +20,10 @@
         
         <ul class="nav navbar-nav navbar-left">
           <!-- Search form -->
-        <form class="navbar-form navbar-left" role="search">
-          <%= form_tag exercises_path, :method => "get" do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Exercises", class: 'form-control' %>
+          <%= form_tag(exercises_path, :method => "get", class: "navbar-form navbar-left") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Exercises", class: 'form-control' %>
           <% end %>
-        </form>
-        <!-- End Search Form -->
-        
+          <!-- End Search Form -->
         </ul>
         
         
@@ -35,9 +32,9 @@
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Strength", exercises_path(), class: "bold" %></li>
-              <li><%= link_to "Abdomen", exercises_path(:muscle_groups_id=>"7") %></li>
-              <li><%= link_to "Arms", exercises_path(:muscle_groups_id=>"2") %></li>
+              <li><%= link_to "Strength", exercises_path(), class: "bold", @title => "All Exercises" %></li>
+              <li><%= link_to "Abdomen", exercises_path(:muscle_groups_id=>"7"), @title => "Abdomen Exercises" %></li>
+              <li><%= link_to "Arms", exercises_path(:muscle_groups_id=>"2"), @title => "Arm Exercises" %></li>
               <li><%= link_to "Back", exercises_path(:muscle_groups_id=>"4") %></li>
               <li><%= link_to "Buttocks", exercises_path(:muscle_groups_id=>"6") %></li>
               <li><%= link_to "Chest", exercises_path(:muscle_groups_id=>"1") %></li>

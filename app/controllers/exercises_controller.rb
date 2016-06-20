@@ -10,6 +10,7 @@ class ExercisesController < ApplicationController
 
     if params[:search]
       @exercises = Exercise.search(params[:search]).paginate(page: params[:page], per_page: 10)
+      #search_exercises
     elsif params[:muscle_groups_id]
       @exercises = Exercise.where(:muscle_groups_id => params[:muscle_groups_id]).paginate(page: params[:page], per_page: 10)
     else
@@ -111,6 +112,11 @@ class ExercisesController < ApplicationController
   private 
     def exercise_params
       params.require(:exercise).permit(:name, :description, :setup, :summary, :categories_id, :muscle_groups_id, :picture)
+    end
+    
+    def search_exercises
+      redirect_to exercises_path
+      @exercises = Exercise.search(params[:search]).paginate(page: params[:page], per_page: 10)
     end
     
     def set_exercise

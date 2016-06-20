@@ -22,11 +22,7 @@ class Exercise < ActiveRecord::Base
   
   # Search Definition to be able to filter out results
   def self.search(search)
-    if search
-      self.where('name LIKE ?', "%#{search}%")
-    else
-      self.all
-    end
+    where("name LIKE ?", "%#{search}%")
   end
   
   private 
