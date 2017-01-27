@@ -1,0 +1,17 @@
+<% title "Skolpt | Users" %>
+
+<div class="container">
+<h1>List of Users</h1>
+  <p>
+  <% @athletes.each do |athlete| %>
+  <div>
+    <%= link_to athlete.email %>
+
+    |  <strong>Logged in count</strong> <%= athlete.sign_in_count %>
+    |  <strong>Last signed in</strong> <%= athlete.last_sign_in_at %>
+    |  <strong>Provider</strong> <%= athlete.provider %>
+  </div>
+  <% end %>
+  
+  </p>
+</div>

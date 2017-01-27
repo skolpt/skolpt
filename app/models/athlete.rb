@@ -9,7 +9,9 @@ class Athlete < ActiveRecord::Base
       athlete.provider = auth.provider
       athlete.uid = auth.uid
       athlete.email = auth.info.email
-      athlete.password = Devise.friendly_token[0,20]
+      athlete.password = Devise.friendly_token
+      athlete.first_name = auth.info.first_name
+      athlete.last_name = auth.info.last_name
     end
   end
 

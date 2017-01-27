@@ -8,6 +8,12 @@
 </div>
 
 <div class="row">
+  <div class="col-md-3">
+    [Placeholder for Filter List]
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-8">
     <% @exercises.each do |exercise| %>
       <h3><%= link_to exercise.name.titleize, exercise_path(exercise) %></h3>

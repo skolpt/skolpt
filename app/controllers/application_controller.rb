@@ -2,8 +2,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  before_action :authenticate_athlete!, :except => [:index, :show, :new, :create, :edit]
-  acts_as_token_authentication_handler_for Athlete, :except => [:index, :show, :new, :create, :edit]
+  #before_action :authenticate_athlete!, :except => [:index, :show, :new, :create, :edit]
+  
+  # The below string is causing authentication issues - Why is this the case?
+  #acts_as_token_authentication_handler_for Athlete, :except => [:index, :show, :new, :create, :edit]
   respond_to :html, :json
   
   protected

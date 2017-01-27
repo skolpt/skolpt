@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'exercises#index'
+  root to: 'pages#home'
+  get 'about', to: 'pages#about'
+  get 'disclaimer', to: 'pages#disclaimer'
 
   
   resources :exercises do
@@ -32,6 +34,12 @@ Rails.application.routes.draw do
   resources :blogs do
   end
   
+  resources :administrators do
+  end
+  
+  resources :dashboard do
+  end
+  
   resources :feedbacks, only: [:create, :show, :edit, :update, :destroy]
   
   get 'your_feedback' => "feedbacks#new"
@@ -49,7 +57,7 @@ Rails.application.routes.draw do
   # Static Pages
   # generic multiview
   # get "/pages/:page" => "pages#show"
-  get ":page" => "pages#show"
+  #get ":page" => "pages#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

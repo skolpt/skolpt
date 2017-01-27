@@ -122,4 +122,8 @@ class ExercisesController < ApplicationController
     def set_exercise
       @exercise=Exercise.friendly.find(params[:id])
     end
+    
+    def muscle
+      @Muscle_group = Muscle_group.find(params[:muscle_groups_id])
+    end
 end

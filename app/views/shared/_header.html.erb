@@ -18,22 +18,27 @@
         </ul>
         -->
         
+        <!-- Search form -->
+        <!--
         <ul class="nav navbar-nav navbar-left">
-          <!-- Search form -->
           <%= form_tag(exercises_path, :method => "get", class: "navbar-form navbar-left") do %>
             <%= text_field_tag :search, params[:search], placeholder: "Search Exercises", class: 'form-control' %>
           <% end %>
-          <!-- End Search Form -->
         </ul>
+        -->
+        <!-- End Search Form -->
         
-        
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-left">
+          <li><%= link_to "Exercises", exercises_path() %></li>
+          
+          <!--
+          Blocked out until filter can be applied
           
           <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Exercises <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to "Strength", exercises_path(), class: "bold", @title => "All Exercises" %></li>
-              <li><%= link_to "Abdomen", exercises_path(:muscle_groups_id=>"7"), @title => "Abdomen Exercises" %></li>
+              <li><%= link_to "Abdomen", exercises_path(:muscle_groups_id=>"7"), :title => "Abdomen Exercises" %></li>
               <li><%= link_to "Arms", exercises_path(:muscle_groups_id=>"2"), @title => "Arm Exercises" %></li>
               <li><%= link_to "Back", exercises_path(:muscle_groups_id=>"4") %></li>
               <li><%= link_to "Buttocks", exercises_path(:muscle_groups_id=>"6") %></li>
@@ -46,24 +51,47 @@
               <li class="bold"><%= link_to "Stretching", exercises_path(), class: "bold" %></li>
             </ul>
           </li>
+          -->
           
-            <li><%= link_to "Feedback", your_feedback_path %></li>
+          <% if athlete_signed_in? %>
+            <% if current_athlete.admin? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li> Create </li>
+                  <li> <%= link_to "New Exercise", new_exercise_path %> </li>
+                  <li> <%= link_to "New Category", new_category_path %> </li>
+                  <li> <%= link_to "New Blog Post", new_blog_path %> </li>
+                  <li role="separator" class="divider"></li>
+                  <li> View </li>
+                  <li> <%= link_to "Categories", categories_path %> </li>
+                  <li> <%= link_to "Administration", administrators_path %> </li>
+                </ul>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+          
+            <% if athlete_signed_in? %>
+              <% if current_athlete.admin? %>
+                <li>
+                  <%= link_to feedback_dashboard_path do %>
+                    Feedback <%= content_tag :span, Feedback.where(:actioned => false).count, class: 'badge' %>
+                  <% end %>
+                </li>
+              <% end %>
+              <% else %>
+                <li><%= link_to "Feedback", your_feedback_path %></li>
+            <% end %>
             
             <% if athlete_signed_in? %>
-          
-              <!-- Not Required
-              <% if !current_athlete.admin? %>
-                <div class="navbar-left">
-                  <p class="navbar-text">
-                    <li>Signed in as <%= "#{current_athlete.email}" %></li>
-                  </p>
-                </div>
-              <% end %>
-              -->
-            
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_athlete.first_name %> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
+                    <li><%= link_to "Profile", dashboard_path(current_athlete) %></li>
+                    <li role="separator" class="divider"></li>
                     <li><%= link_to "Sign out", destroy_athlete_session_path, method: :delete %></li>
                   </ul>
               </li>

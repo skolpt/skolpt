@@ -6,10 +6,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta property="og:title" content="Skolpt" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.skolpt.me" />
+  <%= favicon_link_tag 'skolpt_icon_16px' %>
 </head>
 <body>
   <%= render 'shared/header' %>
   <%= render 'shared/main' %>
   <%= render 'shared/footer' %>
+  
+  <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

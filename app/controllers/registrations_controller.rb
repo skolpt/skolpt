@@ -16,6 +16,14 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def athelete_params
-    params.require(:athlete).permit(:email, :password)
+    params.require(:athlete).permit(:email, :password, :first_name, :last_name)
+  end
+  
+  def sign_up_params
+    params.require(:athlete).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def account_update_params
+    params.require(:athlete).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)
   end
 end 

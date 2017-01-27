@@ -10,6 +10,7 @@ class SessionsController < Devise::SessionsController
      format.json { render :json => {  :athlete => current_athlete, :status => :ok, :authentication_token => current_athlete.authentication_token } }
      format.html { super }
    end
+   
   end
 
   # DELETE /resource/sign_out

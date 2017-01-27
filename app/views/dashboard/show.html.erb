@@ -1,0 +1,44 @@
+<% title "Skolpt | Dashboard" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="exercise-name"> <%= @athlete.email + "'s Dashboard" %> </h2>
+      
+      <div class="pull-right col-xs-7 text-right">
+        <h4 class="green-heading"> Workouts </h4>
+      </div>
+      
+      <div class="row">
+        <h4 class="green-heading"> Email </h4>
+        <p>
+          <div class="exercise-detail-summary">
+            <p> <%= @athlete.email %> </p>
+          </div>
+        </p>
+      </div>
+      
+      <% if @athlete.first_name? %>
+        <div class="row">
+          <h4 class="green-heading"> First Name </h4>
+          <p>
+            <div class="exercise-detail-summary">
+              <p> <%= @athlete.first_name %> </p>
+            </div>
+          </p>
+        </div>
+      <% end %>
+    
+      <% if @athlete.last_name? %>
+        <div class="row">
+          <h4 class="green-heading"> Last Name </h4>
+          <p>
+            <div class="exercise-detail-summary">
+              <p> <%= @athlete.last_name %> </p>
+            </div>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
