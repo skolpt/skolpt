@@ -1,44 +1,28 @@
 <% title "Skolpt | Dashboard" %>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="exercise-name"> <%= @athlete.email + "'s Dashboard" %> </h2>
-      
-      <div class="pull-right col-xs-7 text-right">
-        <h4 class="green-heading"> Workouts </h4>
+  <div class="col-md-3 profile-col">
+    <div class="row">
+      <div class="profile-image">
+        
       </div>
-      
-      <div class="row">
-        <h4 class="green-heading"> Email </h4>
-        <p>
-          <div class="exercise-detail-summary">
-            <p> <%= @athlete.email %> </p>
-          </div>
-        </p>
-      </div>
-      
-      <% if @athlete.first_name? %>
-        <div class="row">
-          <h4 class="green-heading"> First Name </h4>
-          <p>
-            <div class="exercise-detail-summary">
-              <p> <%= @athlete.first_name %> </p>
-            </div>
-          </p>
-        </div>
-      <% end %>
+    </div>
     
-      <% if @athlete.last_name? %>
-        <div class="row">
-          <h4 class="green-heading"> Last Name </h4>
-          <p>
-            <div class="exercise-detail-summary">
-              <p> <%= @athlete.last_name %> </p>
-            </div>
-          </p>
-        </div>
+    <div class="row">
+      <% if @athlete.first_name? && @athlete.last_name? %>
+          <h4><%= @athlete.first_name + " " + @athlete.last_name %></h4>
       <% end %>
     </div>
+    
+    <div class="row">
+      <p class="profile-label"><strong>Email</strong></p>
+      <p><%= @athlete.email %></p>
+    </div>
+    
+    <div class="row">
+      <%= link_to "Edit", "#", class: "btn btn-xs btn-primary " %>
+      <%= link_to "Delete", "#", class: "btn btn-xs btn-danger" %>
+    </div>
+    
   </div>
 </div>
