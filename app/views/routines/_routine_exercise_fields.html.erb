@@ -1,0 +1,8 @@
+<div class="nested-fields routine-exercise-fields">
+  <div class="exercise_from_list">
+    <%= f.association :exercise, collection: Exercise.order(:name), prompt: 'Select Exercise', input_html: { class: 'exercise-selectize' }%>
+    <%= f.input :sets %>
+    <%= f.input :reps %>
+  </div>
+  <%= link_to_remove_association "Remove", f %>
+</div>

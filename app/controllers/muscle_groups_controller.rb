@@ -3,7 +3,7 @@ class MuscleGroupsController < ApplicationController
   before_filter :set_muscle_group, only: [:show, :update, :edit, :destroy]
   
    def index
-     if !current_athlete.admin?
+     if !current_user.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else

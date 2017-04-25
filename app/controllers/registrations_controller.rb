@@ -6,24 +6,24 @@ class RegistrationsController < Devise::RegistrationsController
         super
       }
       format.json {
-        @athlete = Athlete.create(athlete_params)
-        @athlete.save ? (render :json => {:state => {:code => 0}, :data => @athlete }) : 
-                     (render :json => {:state => {:code => 1, :messages => @athlete.errors.full_messages} })
+        @user = User.create(user_params)
+        @user.save ? (render :json => {:state => {:code => 0}, :data => @user }) : 
+                     (render :json => {:state => {:code => 1, :messages => @user.errors.full_messages} })
       }
     end
   end
 
   private
 
-  def athelete_params
-    params.require(:athlete).permit(:email, :password, :first_name, :last_name)
+  def user_params
+    params.require(:user).permit(:email, :password, :first_name, :last_name)
   end
   
   def sign_up_params
-    params.require(:athlete).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
   def account_update_params
-    params.require(:athlete).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)
   end
 end 

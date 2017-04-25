@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   
   def index
-    if !current_athlete.nil? && session[:athlete_id] == current_athlete.id && current_athlete and current_athlete.id == params[:id]
+    if !current_user.nil? && session[:user_id] == current_user.id && current_user and current_user.id == params[:id]
       #flash[:success] = "Welcome back " + current_athlete.email+"!"
     else
       flash[:danger] = "You are not logged in"
@@ -9,9 +9,9 @@ class DashboardController < ApplicationController
     end
   end
   def show
-    @athlete = Athlete.find(params[:id])
+    @user = User.find(params[:id])
     
-    if !current_athlete.nil?
+    if !current_user.nil?
       #flash[:success] = "Welcome back " + current_athlete.email+"!"
     else
       flash[:danger] = "Not allowed, are have you logged in?"

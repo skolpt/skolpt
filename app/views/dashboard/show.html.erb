@@ -9,14 +9,14 @@
     </div>
     
     <div class="row">
-      <% if @athlete.first_name? && @athlete.last_name? %>
-          <h4><%= @athlete.first_name + " " + @athlete.last_name %></h4>
+      <% if @user.first_name? && @user.last_name? %>
+          <h4><%= @user.first_name + " " + @user.last_name %></h4>
       <% end %>
     </div>
     
     <div class="row">
       <p class="profile-label"><strong>Email</strong></p>
-      <p><%= @athlete.email %></p>
+      <p><%= @user.email %></p>
     </div>
     
     <div class="row">

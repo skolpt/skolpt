@@ -53,6 +53,11 @@ gem 'fog', '1.37.0'
 # Friendly URLS
 gem 'friendly_id', '~> 5.1.0'
 
+gem 'simple_form'
+gem 'cocoon'
+gem 'selectize-rails'
+gem 'simple_form_extension'
+
 # Solr Sunspot is the search functionality for the application.
 #gem 'sunspot_rails'
 #gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
@@ -99,3 +104,5 @@ end
 
 end
 
+
+gem 'redactor-rails', github: 'glyph-fr/redactor-rails'

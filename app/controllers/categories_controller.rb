@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_filter :set_category, only: [:show, :update, :edit, :destroy]
   
    def index
-     if !current_athlete.admin?
+     if !current_user.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
   end
   
   def new
-    if current_athlete.nil? || !current_athlete.admin?
+    if current_user.nil? || !current_user.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   end
   
   def show
-    if !current_athlete.admin?
+    if !current_user.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
@@ -41,14 +41,14 @@ class CategoriesController < ApplicationController
   end
   
   def edit
-    if current_athlete.nil? || !current_athlete.admin?
+    if current_user.nil? || !current_user.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     end
   end 
   
   def update
-    if !current_athlete.admin?
+    if !current_user.admin?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else

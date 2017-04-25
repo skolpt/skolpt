@@ -1,0 +1,20 @@
+<h1>Routines</h1>
+
+<% if user_signed_in? %>
+  <%= link_to "Create New Routine", new_routine_path() %>
+<% end %>
+
+<% @routines.each do |routine| %>
+  <div class="row">
+    <div class="blog-container col-md-8">
+      <h3><%= link_to routine.title, routine_path(routine) %></h3>
+      <p>
+        <%= routine.description %>
+      </p>
+    </div>
+  </div>
+
+<% end %>
+
+<!-- Add this to paginate your page, given the pagination details -->
+<%= will_paginate %>

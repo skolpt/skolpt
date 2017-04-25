@@ -1,7 +1,9 @@
 class Exercise < ActiveRecord::Base
-  #searchable do
-  #  text :name, :description
-  #end
+  belongs_to :user
+  has_many :variations
+  has_many :routine_exercises
+  has_many :routines, through: :routine_exercises
+  
   extend FriendlyId
   friendly_id :name
   
@@ -14,8 +16,6 @@ class Exercise < ActiveRecord::Base
   mount_uploader :picture, PictureUploader #Conventional format of uploading images
   validate :picture_size #private method to detect the file size
   
-  belongs_to :user
-  has_many :variations
   acts_as_votable
   
   default_scope { order(name: :asc)}

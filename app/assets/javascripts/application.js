@@ -12,6 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+//= require cocoon
+//= require selectize
+//= require simple_form_extension
+
+$(document).ready(function() {
+  $('.exercise-selectize').selectize({
+    sortField: 'text'
+  });
+  
+  $('#routine-exercises').bind('cocoon:after-insert',
+        function (e, inserted_item) {
+          item = inserted_item.find('.exercise-selectize');
+          item.selectize({
+            sortField: 'text'
+          });
+        });
+});

@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
   
   def create
     @blog = Blog.new(blog_params)
-    @blog.athlete = current_user
+    @blog.user = current_user
     
     if @blog.save
       flash[:success] = "Blog post has been created successfully"

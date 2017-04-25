@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/glyph-fr/redactor-rails.git
+  revision: 46a887de2068c8891bca38ca0f0470ad12a94608
+  specs:
+    redactor-rails (0.6.0)
+      mime-types
+      orm_adapter
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,6 +71,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -356,7 +365,16 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selectize-rails (0.12.4)
     shellany (0.0.1)
+    simple_form (3.4.0)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
+    simple_form_extension (1.4.8)
+      rails (>= 3.1)
+      redactor-rails
+      selectize-rails
+      simple_form
     simple_token_authentication (1.12.0)
       actionmailer (>= 3.2.6, < 5)
       actionpack (>= 3.2.6, < 5)
@@ -408,6 +426,7 @@ DEPENDENCIES
   byebug
   capybara (= 2.4.4)
   carrierwave (= 0.10.0)
+  cocoon
   coffee-rails (~> 4.1.0)
   devise (~> 3.5.1)
   fog (= 1.37.0)
@@ -423,9 +442,13 @@ DEPENDENCIES
   pg
   rails (= 4.2.5)
   rails_12factor
+  redactor-rails!
   rspec-rails (= 3.2.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  selectize-rails
+  simple_form
+  simple_form_extension
   simple_token_authentication
   spring
   spring-commands-rspec

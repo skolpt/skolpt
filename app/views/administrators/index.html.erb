@@ -3,13 +3,13 @@
 <div class="container">
 <h1>List of Users</h1>
   <p>
-  <% @athletes.each do |athlete| %>
+  <% @user.each do |user| %>
   <div>
-    <%= link_to athlete.email %>
+    <%= link_to user.email %>
 
-    |  <strong>Logged in count</strong> <%= athlete.sign_in_count %>
-    |  <strong>Last signed in</strong> <%= athlete.last_sign_in_at %>
-    |  <strong>Provider</strong> <%= athlete.provider %>
+    |  <strong>Logged in count</strong> <%= user.sign_in_count %>
+    |  <strong>Last signed in</strong> <%= user.last_sign_in_at %>
+    |  <strong>Provider</strong> <%= user.provider %>
   </div>
   <% end %>
   

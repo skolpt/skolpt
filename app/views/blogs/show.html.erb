@@ -15,7 +15,7 @@
       <span class="quiet"><%= time_ago_in_words(@blog.updated_at) %> ago | Posted by: Admin</span>
     </p>
     
-    <% if athlete_signed_in? && current_athlete.admin? %>
+    <% if user_signed_in? && current_user.admin? %>
       <%= link_to "Edit Blog", edit_blog_path(@blog), class: "btn btn-primary btn-space" %>
       <%= link_to "Delete Blog", blog_path(@blog), method: :delete, 
                 data: { confirm: "Are you sure you want to delete the blog entry?" },

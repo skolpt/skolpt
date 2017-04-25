@@ -8,7 +8,7 @@
     <p> <%= simple_format(@variation.description) %> </p>
   </div>
   
-  <% if athlete_signed_in? && current_athlete.admin? %>
+  <% if user_signed_in? && current_user.admin? %>
     <%= link_to "Edit Variation", edit_variation_path(@variation), class: "btn btn-primary btn-lg btn-space" %>
     <%= link_to "Delete Variation", variation_path(@variation), method: :delete, 
               data: { confirm: "Are you sure you want to delete the variation?" },

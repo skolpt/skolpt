@@ -1,0 +1,20 @@
+<h1><%= @routine.title %></h1>
+
+<p><strong>Description: </strong><%= @routine.description %></p>
+<p><strong>Difficulty: </strong><%= @routine.difficulty %></p>
+
+<% if @routine.exercises.any? %>
+<strong>Exercises:</strong>
+<ul>
+  <% @routine.routine_exercises.includes(:exercise).each do |routine_exercise| %>
+    <li><%= routine_exercise.exercise.name %> - <strong>Sets: </strong><%= routine_exercise.sets %> - <strong>Reps: </strong><%= routine_exercise.reps %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<% if user_signed_in? && current_user == @routine.user %>
+  <%= link_to "Edit Routine", edit_routine_path(@routine), class: "btn btn-primary btn-space" %>
+  <%= link_to "Delete Routine", blog_path(@routine), method: :delete, 
+            data: { confirm: "Are you sure you want to delete the Workout Routine?" },
+            class: "btn btn-danger btn-primary btn-space" %>
+<% end %>

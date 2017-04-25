@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-lg-6">
+    <%= simple_form_for @routine do |f| %>
+      <div class="form-group">
+        <%= f.input :title %>
+        <%= f.input :difficulty, collection: ["Easy", "intermediate", "Hard"] %>
+        <%= f.input :description, as: :text %>
+      </div>
+      
+      <!-- Exercises -->
+      <div class="form-group">
+        <div id="routine-exercises">
+          <%= f.simple_fields_for :routine_exercises do |routine_exercise| %>
+            <%= render 'routine_exercise_fields', f: routine_exercise %>
+          <% end %>
+        </div>
+        <div class="links">
+          <%= link_to_add_association 'Add Exercise', f, :routine_exercises, 
+                  :class => "btn btn-primary", 
+                  'data-association-insertion-node' => "#routine-exercises",
+                  'data-association-insertion-method' => "append",
+                  :wrap_object => Proc.new { |re| re.build_exercise; re } %>
+        </div>
+      </div>
+      <!-- End of Exercises -->
+        
+      <div class="form-group">
+        <%= f.button :submit, class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

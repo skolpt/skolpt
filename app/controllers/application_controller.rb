@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     
     # Check to see if admin user
     def admin_user?
-      if current_athlete != nil
-        !!current_athlete.admin
+      if current_user != nil
+        !!current_user.admin
       end
     end
     
