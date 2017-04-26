@@ -1,9 +1,11 @@
+<%= render 'shared/errors', obj: @routine %>
+
 <div class="row">
   <div class="col-lg-6">
     <%= simple_form_for @routine do |f| %>
       <div class="form-group">
         <%= f.input :title %>
-        <%= f.input :difficulty, collection: ["Easy", "intermediate", "Hard"] %>
+        <%= f.input :difficulty, collection: ["Easy", "intermediate", "Hard"], prompt: "Select Difficulty" %>
         <%= f.input :description, as: :text %>
       </div>
       
