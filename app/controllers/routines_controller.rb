@@ -4,7 +4,7 @@ class RoutinesController < ApplicationController
   end
   
   def new
-    if current_user.nil? || !current_user.admin?
+    if current_user.nil?
       flash[:danger] = "You do not have the permissions to view that page"
       redirect_to root_path
     else
