@@ -1,20 +1,43 @@
-<h1><%= @routine.title %></h1>
+<div class="container">
+  <div class="row">
+    <h1 class="routine-heading"><%= @routine.title %></h1>
+  </div>
 
-<p><strong>Description: </strong><%= @routine.description %></p>
-<p><strong>Difficulty: </strong><%= @routine.difficulty %></p>
+  <div class="row col-lg-6 col-lg-offset-3">
+    <div class="routine-description">
+      <p><%= @routine.description %></p>
+      <p>Difficulty: <%= @routine.difficulty %></p>
+    </div>
 
-<% if @routine.exercises.any? %>
-<strong>Exercises:</strong>
-<ul>
-  <% @routine.routine_exercises.includes(:exercise).each do |routine_exercise| %>
-    <li><%= routine_exercise.exercise.name %> - <strong>Sets: </strong><%= routine_exercise.sets %> - <strong>Reps: </strong><%= routine_exercise.reps %></li>
+    <div class="routine-outline">
+      <% if @routine.exercises.any? %>
+        <table class="table">
+          <thead>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </thead>
+          <tbody>
+            <% @routine.routine_exercises.includes(:exercise).each do |routine_exercise| %>
+              <tr>
+                <td><%= link_to routine_exercise.exercise.name, exercise_path(routine_exercise.exercise) %></td>
+                <td><%= routine_exercise.sets %></td>
+                <td><%= routine_exercise.reps %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
+      <% end %>
+    </div>
+  
+  </div>
+
+
+  <% if user_signed_in? && current_user == @routine.user %>
+    <%= link_to "Edit Routine", edit_routine_path(@routine), class: "btn btn-primary btn-space" %>
+    <%= link_to "Delete Routine", blog_path(@routine), method: :delete, 
+              data: { confirm: "Are you sure you want to delete the Workout Routine?" },
+              class: "btn btn-danger btn-primary btn-space" %>
   <% end %>
-</ul>
-<% end %>
-
-<% if user_signed_in? && current_user == @routine.user %>
-  <%= link_to "Edit Routine", edit_routine_path(@routine), class: "btn btn-primary btn-space" %>
-  <%= link_to "Delete Routine", blog_path(@routine), method: :delete, 
-            data: { confirm: "Are you sure you want to delete the Workout Routine?" },
-            class: "btn btn-danger btn-primary btn-space" %>
-<% end %>
+</div>
