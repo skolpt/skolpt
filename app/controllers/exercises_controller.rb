@@ -6,16 +6,22 @@ class ExercisesController < ApplicationController
   def index
     # @exercises = Exercise.all
     # The following arranges for pagination on the index page
-    @exercises = Exercise.paginate(page: params[:page], per_page: 10)
-
-    if params[:search]
-      @exercises = Exercise.search(params[:search]).paginate(page: params[:page], per_page: 10)
-      #search_exercises
-    elsif params[:muscle_groups_id]
+    #@exercises = Exercise.paginate(page: params[:page], per_page: 10)
+    
+    if params[:muscle_groups_id]
       @exercises = Exercise.where(:muscle_groups_id => params[:muscle_groups_id]).paginate(page: params[:page], per_page: 10)
     else
       @exercises = Exercise.paginate(page: params[:page], per_page: 10)
     end
+    
+    # if params[:search]
+    #   @exercises = Exercise.search(params[:search]).paginate(page: params[:page], per_page: 10)
+    #   #search_exercises
+    # elsif params[:muscle_groups_id]
+    #   @exercises = Exercise.where(:muscle_groups_id => params[:muscle_groups_id]).paginate(page: params[:page], per_page: 10)
+    # else
+    #   @exercises = Exercise.paginate(page: params[:page], per_page: 10)
+    # end
   end
   
   def new

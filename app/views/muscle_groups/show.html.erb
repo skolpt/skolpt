@@ -1,18 +1,26 @@
-<category class="detail-category">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <h1 class="category-detail-name"><%= @category.name %></h1>
-
-  <h2 class="category-detail-description">  Description</h2>
-  <div class="category-description">
-    <%= @category.description %>
+<div class="container">
+  <div class="row col-lg-6 col-lg-offset-3">
+    <h1 class=""><%= @muscle_group.name %></h1>
   </div>
   
-  <% if user_signed_in? && current_user.admin? %>
-    <%= link_to "Edit Category", edit_category_path(@category), class: "btn btn-primary btn-lg btn-space" %>
-    <%= link_to "Delete Category", category_path(@category), method: :delete, 
-              data: { confirm: "Are you sure you want to delete the category?" },
-              class: "btn btn-danger btn-primary btn-lg btn-space" %>
-  <% end %>
-</article>
+  <div class="row col-lg-6 col-lg-offset-3">
+    <div class="">
+      <p><%= @muscle_group.description %></p>
+    </div>
+  
+  </div>
 
-<hr>
+  <div class="row col-lg-6 col-lg-offset-3">
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "Edit Muscle Group", edit_muscle_group_path(@muscle_group), class: "btn btn-primary btn-space btn-xs" %>
+    <%= link_to "Delete Muscle Group", muscle_group_path(@muscle_group), method: :delete, 
+              data: { confirm: "Are you sure you want to delete this Muscle Group?" },
+              class: "btn btn-danger btn-xs btn-space" %>
+  <% end %>
+  </div>
+  
+  <div class="row col-lg-6 col-lg-offset-3">
+    <%= link_to "Back to Muscle Groups", muscle_groups_path %>  
+  </div>
+  
+</div>

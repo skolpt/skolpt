@@ -2,19 +2,27 @@
 
 <div class="container">
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-lg-8 col-lg-offset-2">
     <h1>All Exercises</h1>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-3">
-    [Placeholder for Filter List]
+  <div class="col-lg-8 col-lg-offset-2">
+    
+    <%= link_to "All Exercises", exercises_path() %>
+    <%= link_to "Chest", exercises_path(:muscle_groups_id=>"1") %>
+    <%= link_to "Arms", exercises_path(:muscle_groups_id=>"2") %>
+    <%= link_to "Shoulders", exercises_path(:muscle_groups_id=>"3") %>
+    <%= link_to "Back", exercises_path(:muscle_groups_id=>"4") %>
+    <%= link_to "Legs", exercises_path(:muscle_groups_id=>"5") %>
+    <%= link_to "Buttocks", exercises_path(:muscle_groups_id=>"6") %>
+    <%= link_to "Abdomen", exercises_path(:muscle_groups_id=>"7") %>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-lg-8 col-lg-offset-2">
     <% @exercises.each do |exercise| %>
       <h3><%= link_to exercise.name.titleize, exercise_path(exercise) %></h3>
       <p><%= exercise.description %></p>

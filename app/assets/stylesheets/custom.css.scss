@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.jumbotron {
+  
+}
+
 .admin-nav {
   background: #e7e7e7;
 }
@@ -74,8 +78,6 @@
 body {
   background: #FFFFFF;
   color: #15231a;
-  padding-top: 50px;
-  height: 100%;
 }
 
 .bold {
@@ -213,10 +215,21 @@ body {
 }
 
 footer {
+  background: #efefef;
+  border-top: 1px solid #ddd;
   font-size: 0.8em;
   font-weight: bold;
   letter-spacing: 0.1em;
+  margin-top: 20px;
   text-transform: uppercase;
+}
+
+footer ul{
+  padding: 0;
+}
+
+footer ul li {
+  list-style: none;
 }
 
 footer a {
@@ -230,6 +243,16 @@ footer a:hover {
 
 .footer-push {
   padding-bottom: 50px;
+}
+
+.footer-link-container {
+  margin-bottom: 30px;
+}
+
+.copyright {
+  background: #ababab;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .form-horizontal .form-group {
@@ -279,9 +302,11 @@ input[type=text], textarea, select, .uneditable-input {
 
 .navbar {
   background: #48BC7D;
+  border-radius: 0 !important;
   font-size: 0.9em;
   font-weight: bold;
   letter-spacing: 0.1em;
+  margin-bottom: 0;
   text-transform: uppercase;
 }
 

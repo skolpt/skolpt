@@ -1,4 +1,8 @@
+<div class="container">
+
 <h1>All Muscle Groups</h1>
+
+<%= link_to "New Muscle Group", new_muscle_group_path, class: "btn btn-primary btn-space btn-xs" %>
 
 <% @muscle_groups.each do |muscle_group| %>
   <div class="well well-lg">
@@ -10,3 +14,5 @@
     </div>
   </div>
 <% end %>
+
+</div>

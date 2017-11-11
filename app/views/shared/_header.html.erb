@@ -1,5 +1,5 @@
 <header role="banner">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
         
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -59,13 +59,15 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li> Create </li>
+                  <h6 class="dropdown-header"> Create </h6>
                   <li> <%= link_to "New Exercise", new_exercise_path %> </li>
                   <li> <%= link_to "New Category", new_category_path %> </li>
+                  <li> <%= link_to "New Muscle Group", new_muscle_group_path %> </li>
                   <li> <%= link_to "New Blog Post", new_blog_path %> </li>
                   <li role="separator" class="divider"></li>
-                  <li> View </li>
+                  <h6 class="dropdown-header"> View </h6>
                   <li> <%= link_to "Categories", categories_path %> </li>
+                  <li> <%= link_to "Muscle Groups", muscle_groups_path %> </li>
                   <li> <%= link_to "Administration", administrators_path %> </li>
                 </ul>
               </li>
@@ -74,19 +76,6 @@
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
-          
-            <% if user_signed_in? %>
-              <% if current_user.admin? %>
-                <li>
-                  <%= link_to feedback_dashboard_path do %>
-                    Feedback <%= content_tag :span, Feedback.where(:actioned => false).count, class: 'badge' %>
-                  <% end %>
-                </li>
-              <% end %>
-              <% else %>
-                <li><%= link_to "Feedback", your_feedback_path %></li>
-            <% end %>
-            
             <% if user_signed_in? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <span class="caret"></span></a>

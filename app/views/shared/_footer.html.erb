@@ -1,16 +1,43 @@
-<div class="container">
-  <footer>
+<footer>
+  <div class="container">
     <div class="row">
-      <hr />
-      <div class="pull-left col-xs-3">
-        <p><span class="copyright">Copyright 2016 &copy; Skolpt</span></p>
+      <div class="col-lg-4 footer-link-container">
+        <h5>Important</h5>
+        <ul>
+          <li><%= link_to "Disclaimer", '/disclaimer' %></li>
+        </ul>
       </div>
-      <div class="pull-right col-xs-9 text-right">
-        <%= link_to "About", '/about' %>
-        <%= link_to "Contact", '/contact' %>
-        <%= link_to "Blog", blogs_path %>
-        <%= link_to "Disclaimer", '/disclaimer' %>
+      <div class="col-lg-4 footer-link-container">
+        <h5>Get To Know Us</h5>
+        <ul>
+          <li><%= link_to "About", '/about' %></li>
+          <li><%= link_to "Blog", blogs_path %></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 footer-link-container">
+        <h5>Contact Us</h5>
+        <ul>
+          <li><%= link_to "Contact", '/contact' %></li>
+          <li>
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <li>
+                  <%= link_to feedback_dashboard_path do %>
+                    Feedback <%= content_tag :span, Feedback.where(:actioned => false).count, class: 'badge' %>
+                  <% end %>
+                </li>
+              <% end %>
+              <% else %>
+                <li><%= link_to "Feedback", your_feedback_path %></li>
+            <% end %>
+          </li>
+        </ul>
       </div>
     </div>
-  </footer>
-</div>
+  </div>
+  <div class="row copyright">
+    <div class="container">
+      <p><span class="copyright">Copyright 2017 &copy; Skolpt</span></p>
+    </div>
+  </div>
+</footer>

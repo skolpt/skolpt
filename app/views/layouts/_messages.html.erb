@@ -1,10 +1,12 @@
-<div class="row">
-  <div class="md-col-12">
-    <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name %>">
-        <%= msg %>
-        <a class="close" data-dismiss="alert">&#215;</a>
-      </div>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="md-col-12">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
+          <%= msg %>
+          <a class="close" data-dismiss="alert">&#215;</a>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
